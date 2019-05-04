@@ -14,10 +14,13 @@ var Cart = [];
 
 //HTML едемент куди будуть додаватися піци
 var $cart = $("#cart");
+var orderAmount = 0;
+var totalPrice = Number(require('./PizzaMenu'));
 
 function addToCart(pizza, size) {
     //Додавання однієї піци в кошик покупок
-
+    orderAmount++;
+    document.getElementById("orderAmo").innerHTML = orderAmount;
     //Приклад реалізації, можна робити будь-яким іншим способом
     Cart.push({
         pizza: pizza,
@@ -27,11 +30,14 @@ function addToCart(pizza, size) {
 
     //Оновити вміст кошика на сторінці
     updateCart();
+
 }
 
-function removeFromCart(cart_item) {
+function removeFromCart(Cart ) {
     //Видалити піцу з кошика
-    //TODO: треба зробити
+    orderAmount--;
+    document.getElementById("orderAmo").innerHTML = orderAmount;
+    Cart.pop();
 
     //Після видалення оновити відображення
     updateCart();
@@ -65,11 +71,29 @@ function updateCart() {
 
         $node.find(".plus").click(function(){
             //Збільшуємо кількість замовлених піц
+            totalPrice+=199;
+            document.getElementById("sumPrice").innerHTML = totalPrice;
             cart_item.quantity += 1;
-
             //Оновлюємо відображення
             updateCart();
         });
+
+        $node.find(".minus").click(function() {
+            if (cart_item.quantity <= 1)
+                alert("Ви не можете зменшити кылькість до нуля!");
+            else {
+                cart_item.quantity -= 1;
+                updateCart();
+            }
+        });
+
+        $node.find(".remove").click(function () {
+
+            Cart.pop();
+            removeFromCart(Cart);
+            updateCart();
+        });
+
 
         $cart.append($node);
     }

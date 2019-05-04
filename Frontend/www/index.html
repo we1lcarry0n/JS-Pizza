@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="cosmetic.css" />
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBu8EfHXfhweZE-W19Uo2d_UIFrmKvOeMo"></script>
 
     <!-- LESS основний файл -->
     <link rel="stylesheet/less" type="text/less" href="assets/less/pizza/pizza-card.less" />
@@ -20,8 +21,8 @@
 
 </head>
 <body>
-<div id="cart"></div>
 <div class="container">
+    <div id="googleMap"></div>
     <div class = "hideoutmenu">
         <div class="PKMA">
             <span>PIZZA <br/> KMA</span>
@@ -40,167 +41,29 @@
         <span class = "discount-num">-20%</span>
         <img class = "discount-corner" src="assets/images/discount.svg">
     </div>
-    <div class="row" id="pizza_list">
-        <div class = "col-12 col-md-10">
-        <div class="col-sm-6 col-md-4">
-            <div class="thumbnail pizza-card">
-                <img src="assets/images/pizza_1.jpg">
-
-                <div class="caption"><h3 class = "name">Техас</h3>
-
-                    <p class = "descript">М'ясна піца</p>
-
-                    <p>Інгрідієнти</p>
-                    <p>
-                        <span class = "smallSize"><img src="assets/images/size-icon.svg"> 30</span>
-                        <span class = "largeSize largeParam"><img src="assets/images/size-icon.svg"> 40</span>
-                    </p>
-                    <p>
-                        <span class = "smallWeight"><img src="assets/images/weight.svg"> 370</span>
-                        <span class = "largeWeight largeParam"><img src="assets/images/weight.svg"> 660</span>
-                    </p>
-                    <p>
-                        <span class = "price smallPrice">120</span>
-                        грн
-                        <span class = "price largePrice largeParam">160</span>
-                        <span class = "largeParam uah">грн</span>
-                    </p>
-                    <p>
-                        <a href="#" class="btn btn-primary smallButton">Купити</a>
-                        <a href="#" class="btn btn-primary largeButton largeParam">Купити</a>
-                    </p>
-                </div>
-            </div>
+    <div class="row">
+        <div class="col-md-10" id="pizza_list">
         </div>
-
-        <div class="col-sm-6 col-md-4">
-            <div class="thumbnail pizza-card">
-                <img src="assets/images/pizza_2.jpg">
-
-                <div class="caption"><h3 class = "name">Маргарита</h3>
-                    <p class = "descript">М'ясна піца</p>
-
-                    <p>Інгрідієнти</p>
-                    <p>
-                        <span class = "smallSize"><img src="assets/images/size-icon.svg"> 30</span>
-                        <span class = "largeSize largeParam"><img src="assets/images/size-icon.svg"> 40</span>
-                    </p>
-                    <p>
-                        <span class = "smallWeight"><img src="assets/images/weight.svg"> 370</span>
-                        <span class = "largeWeight largeParam"><img src="assets/images/weight.svg"> 660</span>
-                    </p>
-                    <p>
-                        <span class = "price smallPrice">120</span>
-                        грн
-                        <span class = "price largePrice largeParam">160</span>
-                        <span class = "largeParam uah">грн</span>
-                    </p>
-                    <p>
-                        <a href="#" class="btn btn-primary smallButton">Купити</a>
-                        <a href="#" class="btn btn-primary largeButton largeParam">Купити</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-sm-6 col-md-4">
-            <div class="thumbnail pizza-card">
-                <img src="assets/images/pizza_3.jpg">
-
-                <div class="caption"><h3 class = "name">Томатна</h3>
-                    <p class = "descript">М'ясна піца</p>
-                    <p>Інгрідієнти</p>
-                    <p>
-                        <span class = "smallSize"><img src="assets/images/size-icon.svg"> 30</span>
-                        <span class = "largeSize largeParam"><img src="assets/images/size-icon.svg"> 40</span>
-                    </p>
-                    <p>
-                        <span class = "smallWeight"><img src="assets/images/weight.svg"> 370</span>
-                        <span class = "largeWeight largeParam"><img src="assets/images/weight.svg"> 660</span>
-                    </p>
-                    <p>
-                        <span class = "price smallPrice">120</span>
-                        грн
-                        <span class = "price largePrice largeParam">160</span>
-                        <span class = "largeParam uah">грн</span>
-                    </p>
-                    <p>
-                        <a href="#" class="btn btn-primary smallButton">Купити</a>
-                        <a href="#" class="btn btn-primary largeButton largeParam">Купити</a>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-        <div class = "col-12 col md-2">
+        <div class = "col md-2">
             <div class = "order">
                 <span class = ordername">Замовлення</span>
-                <button class = "ordercircle"> 3 </button>
+                <button id = "orderAmo" class = "ordercircle"> </button>
                 <button class = "clear">Очистити замовлення</button>
             </div>
-            <div class = "withSmth">
-                <p class = rname>Техас(Мала)</p>
-                <p>
-                    <span class = "rstats rsize"><img src="assets/images/size-icon.svg"> 30</span>
-                    <span class = "rstats rweight"><img src="assets/images/weight.svg"> 370</span>
-                </p>
-                <span class="rprice">120</span>
-                грн
-                <button class = minus>-</button>
-                <input class = inp value = "1">
-                <button class = "plus">+</button>
-                <button class = "remove">X</button>
-            </div>
-            <div class = "withSmth">
-                <p class = rname>Маргарита(Мала)</p>
-                <p>
-                    <span class = "rstats rsize"><img src="assets/images/size-icon.svg"> 30</span>
-                    <span class = "rstats rweigh"><img src="assets/images/weight.svg"> 370</span>
-                </p>
-                <span class="rprice">120</span>
-                грн
-                <button class = minus>-</button>
-                <input class = inp value = "1">
-                <button class = "plus">+</button>
-                <button class = "remove">X</button>
-            </div>
-            <div class = "withSmth">
-                <p class = rname>Томатна(Мала)</p>
-                <p>
-                    <span class = "rstats rsize"><img src="assets/images/size-icon.svg"> 30</span>
-                    <span class = "rstats rweigh"><img src="assets/images/weight.svg"> 370</span>
-                </p>
-                <span class="rprice" >120</span>
-                грн
-                <button class = minus>-</button>
-                <input class = inp value = "1">
-                <button class = "plus">+</button>
-                <button class = "remove">X</button>
-            </div>
-            <div id = "toBeCloned" class = withSmth>
-                <p class = rname></p>
-                <p>
-                    <img style="margin-left: 10px" src="assets/images/size-icon.svg">
-                    <span class = "rstats rsize" style="margin-left:0px"></span>
-                    <img style="margin-left: 2%" src="assets/images/weight.svg">
-                    <span class = "rstats rweight" style="margin-left:0px"></span>
-                </p>
-                <span class="rprice" ></span>
-                грн
-                <button class = minus>-</button>
-                <input class = inp value = "1">
-                <button class = "plus">+</button>
-                <button class = "remove">X</button>
+            <div id="cart">
             </div>
             <div class = "summary">
                 <p>
                     Сума Замовлення
-                    <span id="sumPrice">360</span>
+                    <span id="sumPrice"></span>
                     грн
+                    <button class = "btn btn-primary ">Замовити</button>
                 </p>
-                <button class = "btn btn-primary btn-final">Замовити</button>
+
             </div>
         </div>
+    </div>
+
     </div>
 </div>
 
@@ -211,6 +74,22 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 <!--Own JavaScript -->
-<!--<script type="text/javascript"  src="assets/js/main.js"> </script>-->
+<<script type="text/javascript"  src="assets/js/main.js"> </script>
+
+<div id = "toBeCloned" class = withSmth>
+    <p class = rname></p>
+    <p>
+        <img style="margin-left: 10px" src="assets/images/size-icon.svg">
+        <span class = "rstats rsize" style="margin-left:0px"></span>
+        <img style="margin-left: 2%" src="assets/images/weight.svg">
+        <span class = "rstats rweight" style="margin-left:0px"></span>
+    </p>
+    <span class="rprice" ></span>
+    грн
+    <button class = minus>-</button>
+    <input class = inp value = "1">
+    <button class = "plus">+</button>
+    <button class = "remove">X</button>
+</div>
 </body>
 </html>

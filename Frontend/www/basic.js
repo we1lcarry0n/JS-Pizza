@@ -10,6 +10,7 @@ $(document).ready(function(){
     });
 
     $(".plus").click(function(){
+        alert("fuck you");
         var price = Number($(this).parent().find(".rprice").text());
         var i = $(this).parent().find(".inp").val();
         i++;
@@ -102,4 +103,6 @@ $(document).ready(function(){
         $(this).parent().remove();
         $("#sumPrice").text(prev);
     })
+
 })
+
